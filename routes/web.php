@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +16,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return Str::of('hey you')->append(' and everybody there');
+    // return str('this is a title')->slug();
+    return str()->slug('this is a title');
+    // return view('welcome');
+})->name('home');
+
+Route::get('/url', function () {
+    return to_route('home');
+    // return redirect()->route('home');
 });
 
 // Route::get('/task', [TaskController::class, 'index']);
 // Route::get('/task/{task}', [TaskController::class, 'show']);
 // Route::post('/task', [TaskController::class, 'Store']);
-
 
 Route::controller(TaskController::class)->group(function () {
     Route::get('/task', 'index');
