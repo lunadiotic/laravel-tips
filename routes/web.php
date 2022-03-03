@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\TaskController;
+use App\Models\Task;
+use App\Models\User;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -39,3 +41,7 @@ Route::controller(TaskController::class)->group(function () {
     Route::get('/task/{task}', 'show');
     Route::post('/task', 'store');
 });
+
+Route::get('/users/{user}/tasks/{task}', function (User $user, Task $task) {
+    return $task;
+})->scopeBindings();
