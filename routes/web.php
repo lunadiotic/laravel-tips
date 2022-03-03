@@ -19,6 +19,7 @@ use Illuminate\Support\Str;
 */
 
 Route::get('/', function () {
+    return Task::search('Consequatur')->get();
     // throw new \Exception('Whoops');
     // return Str::of('hey you')->append(' and everybody there');
     // return str('this is a title')->slug();
