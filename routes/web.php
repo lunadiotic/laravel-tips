@@ -16,10 +16,11 @@ use Illuminate\Support\Str;
 */
 
 Route::get('/', function () {
+    // throw new \Exception('Whoops');
     // return Str::of('hey you')->append(' and everybody there');
     // return str('this is a title')->slug();
-    return str()->slug('this is a title');
-    // return view('welcome');
+    // return str()->slug('this is a title');
+    return view('welcome');
 })->name('home');
 
 Route::get('/url', function () {
