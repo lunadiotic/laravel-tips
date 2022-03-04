@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\TaskState;
 use App\Http\Controllers\TaskController;
 use App\Models\Task;
 use App\Models\User;
@@ -19,6 +20,20 @@ use Illuminate\Support\Str;
 */
 
 Route::get('/', function () {
+    // dd(Task::first()->state);
+    // $task = new Task();
+    // $task->user_id = '1';
+    // $task->title = 'Learn Laravel 1';
+    // $task->detail = 'Learn Laravel 1';
+    // $task->state = TaskState::Upcoming;
+    // $task->save();
+    // return 'done';
+
+    $task = Task::first();
+    if ($task->state === TaskState::Draft) {
+        return 'it is a draft';
+    }
+
     return Task::search('Consequatur')->get();
     // throw new \Exception('Whoops');
     // return Str::of('hey you')->append(' and everybody there');
@@ -27,6 +42,10 @@ Route::get('/', function () {
     return Blade::render('{{ $greeting }}, World', ['greeting' => 'Hi']);
     return view('welcome');
 })->name('home');
+
+Route::get('/tasks/{state}', function (TaskState $state) {
+    dd($state);
+});
 
 Route::get('/url', function () {
     return to_route('home');

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\TaskState;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Attributes\SearchUsingFullText;
@@ -10,6 +11,10 @@ use Laravel\Scout\Searchable;
 class Task extends Model
 {
     use HasFactory, Searchable;
+
+    protected $casts = [
+        'state' => TaskState::class
+    ];
 
     #[SearchUsingFullText('detail')]
     public function toSearchableArray()

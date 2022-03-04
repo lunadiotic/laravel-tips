@@ -19,6 +19,12 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->string('title');
             $table->text('detail')->fulltext();
+            /**
+             * it will be problem when add something.
+             * always re run and should in php side
+             */
+            // $table->enum('state', ['draft', 'upcoming', 'done']);
+            $table->string('state')->default('draft');
             $table->timestamps();
         });
     }
