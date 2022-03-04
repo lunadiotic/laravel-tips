@@ -58,7 +58,7 @@ Route::get('/url', function () {
 
 Route::controller(TaskController::class)->group(function () {
     Route::get('/task', 'index');
-    Route::get('/task/{task}', 'show');
+    Route::get('/task/{task}', 'show')->name('task.show');
     Route::post('/task', 'store');
 });
 
